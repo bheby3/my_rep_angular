@@ -1,0 +1,61 @@
+<h1 id="who_my_rep_title">
+    <div>Who's My Representative</div>
+</h1>
+<div id="container">
+
+    <section id="left_section">
+
+        <section id="select_section" class="flex_row_center">
+            <br>
+            <select name="state" id="select_state" ng-model="select.state"
+                    data-ng-options="state for state in states">
+                <option value="">--state--</option>
+            </select>
+            <select name="state" id="select_rep" ng-model="select.rep">
+                <option value="">--representative--</option>
+                <option value="senator">senator</option>
+                <option value="representative">representative</option>
+            </select>
+        </section>
+
+        <div class="flex_column_center">
+            <button id="submit" ng-click="getStateRep(select.state, select.rep)">submit</button>
+            <br>
+            <div class="toggle_error" ng-show="toggleError">{{error}}</div>
+            <h3 class="flex_row_start"> List  / <span id="representatives">  Representatives</span></h3>
+        </div>
+
+        <div id="list_header">
+            <div id="name_header">Name</div>
+            <div id="party_header">Party</div>
+        </div>
+
+        <section ng-show="toggleSenators">
+            <div ng-repeat="senator in senators track by $index">
+                <div class="name_party_container">
+                    <div class="name" ng-click="toggleSenator($index, senator)"><a href="">{{senator.name}}</a></div>
+                    <div class="party">{{senator.party}}</div>
+                </div>
+            </div>
+        </section>
+
+        <section ng-show="toggleRepresentatives">
+            <div ng-repeat="rep in representatives track by $index">
+                <div class="name_party_container">
+                    <div class="name" ng-click="toggleRepresentative($index, rep)"><a href="">{{rep.name}}</a></div>
+                    <div class="party">{{rep.party}}</div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <section id="right_section" class="flex_column_start">
+        <h1>Info</h1>
+        <div id="right_first_name"> First Name: {{bindRep.firstName}}</div>
+        <div id="right_last_name"> Last Name: {{bindRep.lastName}}</div>
+        <div id="right_district"> District: {{bindRep.district}}</div>
+        <div id="right_phone"> Phone: {{bindRep.phone}}</div>
+        <div id="right_office"> Office: {{bindRep.office}}</div>
+        <div id="right_link"> Link: <a href="{{bindRep.link}}">{{bindRep.link}}</a></div>
+    </section>
+</div>
